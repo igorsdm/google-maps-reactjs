@@ -6,7 +6,7 @@ export default reducers => {
     {
       key: 'react_maps',
       storage,
-      whitelist: ['user']
+      whitelist: ['maps']
     },
     reducers
   )

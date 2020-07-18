@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import user from './user/reducer'
+import maps from './maps/reducer'
 
 export default combineReducers({
-  user
+  maps
 })

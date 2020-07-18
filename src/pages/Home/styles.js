@@ -1,9 +1,8 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  display: flex;
-  grid-area: header;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 100%;
+  grid-template-areas: 'sidenav header';
 `
