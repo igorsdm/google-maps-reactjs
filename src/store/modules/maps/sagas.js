@@ -1,15 +1,13 @@
-import { takeLatest, put, all, select } from 'redux-saga/effects'
-
+import { takeLatest, put, all } from 'redux-saga/effects'
+import { toast } from 'react-toastify'
 import { addMarkerSuccess, addMarkerFailure } from './actions'
 
 export function* addMarker({ payload }) {
-  const { marker } = yield select(state => state.maps)
-
   try {
-    marker.push(payload)
-    yield put(addMarkerSuccess(marker))
+    yield put(addMarkerSuccess(payload))
+    toast.success('Marcador registrado com sucesso!')
   } catch (error) {
-    yield put(addMarkerFailure())
+    yield addMarkerFailure()
   }
 }
 

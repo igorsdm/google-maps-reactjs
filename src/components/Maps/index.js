@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { GoogleMap, useLoadScript } from '@react-google-maps/api'
+import PropTypes from 'prop-types'
 
 import { Container } from './styles'
 
-export default function GoogleMaps() {
+export default function GoogleMaps({ children }) {
   const [center, setCenter] = useState({})
   const [zoom, setZoom] = useState(10)
 
@@ -36,15 +37,26 @@ export default function GoogleMaps() {
     )
   }, [])
 
-  if (!isLoaded) return 'Carregando Mapa'
-
   return (
     <Container>
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={zoom}
-        center={center}
-      ></GoogleMap>
+      {isLoaded ? (
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          zoom={zoom}
+          center={center}
+        >
+          {children}
+        </GoogleMap>
+      ) : (
+        <h1>Carregando Mapa</h1>
+      )}
     </Container>
   )
+}
+GoogleMaps.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.array
+  ]).isRequired
 }

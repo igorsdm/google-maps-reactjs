@@ -1,16 +1,20 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import * as Yup from 'yup'
+import { Marker, InfoWindow } from '@react-google-maps/api'
 
 import GoogleMaps from '~/components/Maps'
-import { addMarkerRequest } from '~/store/modules/maps/actions'
 import Button from '~/components/Button'
+import { addMarkerRequest } from '~/store/modules/maps/actions'
 
 import { Container, SideForm, Form, InputDiv } from './styles'
 
 export default function Home() {
   const dispatch = useDispatch()
+  const { totalMarkers } = useSelector(state => state.maps)
+  const [selected, setSelected] = useState(null)
+
   const schema = Yup.object().shape({
     title: Yup.string().required('O Título é obrigatório'),
     lat: Yup.number()
@@ -40,11 +44,10 @@ export default function Home() {
             <label htmlFor="Title">Titulo</label>
             <input type="text" name="title" ref={register()} />
             {errors.title && <span>O campo Título é obrigatório</span>}
-            {console.log(errors)}
           </InputDiv>
           <InputDiv>
             <label htmlFor="lat">Latitude</label>
-            <input type="number" name="lat" ref={register} />
+            <input type="number" step="0.000001" name="lat" ref={register} />
             {errors.lat && errors.lat.type === 'typeError' && (
               <span>O campo Latitude é obrigatório</span>
             )}
@@ -57,7 +60,7 @@ export default function Home() {
           </InputDiv>
           <InputDiv>
             <label htmlFor="lng">Longitude</label>
-            <input type="number" name="lng" ref={register} />
+            <input type="number" step="0.000001" name="lng" ref={register} />
             {errors.lng && errors.lng.type === 'typeError' && (
               <span>O campo Longitude é obrigatório</span>
             )}
@@ -68,17 +71,38 @@ export default function Home() {
               <span>A Latitude mínima é -180</span>
             )}
           </InputDiv>
-          <Button
-            type="submit"
-            backgroundColor="ruby"
-            width="80%"
-            height="2.5rem"
-          >
+          <Button type="submit" width="80%" height="2.5rem">
             Adicionar
+          </Button>
+          <Button type="button" width="80%" height="2.5rem" color="sunset">
+            Limpar
           </Button>
         </Form>
       </SideForm>
-      <GoogleMaps />
+      <GoogleMaps>
+        {totalMarkers.map(marker => (
+          <Marker
+            key={marker.title}
+            position={{ lat: Number(marker.lat), lng: Number(marker.lng) }}
+            title={marker.title}
+            onClick={() => {
+              setSelected(marker)
+            }}
+          />
+        ))}
+        {selected ? (
+          <InfoWindow
+            position={{ lat: Number(selected.lat), lng: Number(selected.lng) }}
+            onCloseClick={() => {
+              setSelected(null)
+            }}
+          >
+            <div>
+              <h2>{selected.title}</h2>
+            </div>
+          </InfoWindow>
+        ) : null}
+      </GoogleMaps>
     </Container>
   )
 }
