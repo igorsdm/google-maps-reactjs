@@ -12,6 +12,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@hookform/resolvers": "^0.0.6",
     "@react-google-maps/api": "^1.9.7",
     "axios": "^0.19.0",
     "customize-cra": "^0.6.0",
@@ -33,7 +34,8 @@
     "redux": "^4.0.4",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.0.5",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "yup": "^0.29.1"
   },
   "devDependencies": {
     "babel-plugin-root-import": "^6.4.1",
