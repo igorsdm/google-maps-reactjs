@@ -2,13 +2,39 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   display: grid;
+  grid-area: content;
   grid-template-columns: 320px calc(100% - 320px);
   grid-template-rows: 100%;
-  grid-template-areas: 'sidenav header';
+  grid-template-areas: 'sidenav map';
+  overflow-y: none;
+
+  @media screen and (max-width: 1024px) {
+    overflow-y: scroll;
+    grid-template-columns: 100%;
+    grid-template-rows: 70vh 30vh;
+    grid-template-areas:
+      'map'
+      'sidenav';
+    padding: 0 0.5rem;
+
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: ${props => props.theme.colors.white};
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: ${props => props.theme.colors.white};
+    }
+  }
 `
 
 export const SideForm = styled.div`
   display: flex;
+  grid-area: sidenav;
   flex-direction: column;
   align-items: center;
   height: 100%;

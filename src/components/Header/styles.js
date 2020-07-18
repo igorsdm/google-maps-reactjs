@@ -5,4 +5,5 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+  grid-area: header;
 `
