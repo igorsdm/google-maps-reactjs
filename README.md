@@ -5,33 +5,33 @@
 Google Maps ReactJS let's you add new markers in the map so you can keep track of your favorite locations! To add a new marker, insert a Title for it and its Latitude and Longitude. In order to test the application, we suggest some cities to add:
 
 ```
-{
-	 [
+[
+	{
 	  "Title": "Uruguaiana",
 	  "Latitude":-29.758459,
 	  "Longitude":-57.0882
-	 ],
-	 [
+	},
+	{
 	  "Title": "Porto Alegre",
 	  "Latitude":-30.034647,
 	  "Longitude":-51.217659
-	 ],
-	 [
+	},
+	{
 	  "Title": "Santa Maria",
 	  "Latitude":-29.6914,
 	  "Longitude":-53.8008
-	 ],
-	 [
+	},
+	{
 	  "Title": "Pelotas",
 	  "Latitude":-31.776,
 	  "Longitude":-52.3594
-	 ],
-	 [
+	},
+	{
 	  "Title": "Passo Fundo",
 	  "Latitude":-28.2612,
 	  "Longitude":-52.4083
-	 ],
-}
+	},
+]
 ```
 
 ## Installation
