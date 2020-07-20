@@ -17,6 +17,16 @@ export default function maps(state = INICIAL_STATE, action) {
       case '@marker/ADD_MARKER_FAILURE': {
         break
       }
+      case '@marker/DELETE_MARKERS_REQUEST': {
+        break
+      }
+      case '@marker/DELETE_MARKERS_SUCCESS': {
+        draft.totalMarkers = []
+        break
+      }
+      case '@marker/DELETE_MARKERS_FAILURE': {
+        break
+      }
       default:
     }
   })

@@ -6,7 +6,10 @@ import { Marker, InfoWindow } from '@react-google-maps/api'
 
 import GoogleMaps from '~/components/Maps'
 import Button from '~/components/Button'
-import { addMarkerRequest } from '~/store/modules/maps/actions'
+import {
+  addMarkerRequest,
+  deleteMarkersRequest
+} from '~/store/modules/maps/actions'
 
 import { Container, SideForm, Form, InputDiv } from './styles'
 
@@ -33,6 +36,10 @@ export default function Home() {
   function handleSubmitMarker(data) {
     dispatch(addMarkerRequest(data))
     reset()
+  }
+
+  function handleDeleteMarkers() {
+    dispatch(deleteMarkersRequest())
   }
 
   return (
@@ -90,7 +97,13 @@ export default function Home() {
           <Button type="submit" width="80%" height="2.5rem">
             Adicionar
           </Button>
-          <Button type="button" width="80%" height="2.5rem" color="sunset">
+          <Button
+            type="button"
+            width="80%"
+            height="2.5rem"
+            color="sunset"
+            onClick={() => handleDeleteMarkers()}
+          >
             Limpar
           </Button>
         </Form>
