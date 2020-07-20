@@ -38,16 +38,26 @@ export default function Home() {
   return (
     <Container>
       <SideForm>
-        <Form onSubmit={handleSubmit(handleSubmitMarker)} autoComplete="off">
+        <Form
+          onSubmit={handleSubmit(handleSubmitMarker)}
+          autoComplete="off"
+          data-testid="marker-form"
+        >
           <h2>Adicionar Marcador</h2>
           <InputDiv>
-            <label htmlFor="Title">Titulo</label>
-            <input type="text" name="title" ref={register()} />
+            <label htmlFor="title">Título</label>
+            <input type="text" name="title" id="title" ref={register()} />
             {errors.title && <span>O campo Título é obrigatório</span>}
           </InputDiv>
           <InputDiv>
             <label htmlFor="lat">Latitude</label>
-            <input type="number" step="0.000001" name="lat" ref={register} />
+            <input
+              type="number"
+              step="0.000001"
+              name="lat"
+              id="lat"
+              ref={register}
+            />
             {errors.lat && errors.lat.type === 'typeError' && (
               <span>O campo Latitude é obrigatório</span>
             )}
@@ -60,7 +70,13 @@ export default function Home() {
           </InputDiv>
           <InputDiv>
             <label htmlFor="lng">Longitude</label>
-            <input type="number" step="0.000001" name="lng" ref={register} />
+            <input
+              type="number"
+              step="0.000001"
+              name="lng"
+              id="lng"
+              ref={register}
+            />
             {errors.lng && errors.lng.type === 'typeError' && (
               <span>O campo Longitude é obrigatório</span>
             )}

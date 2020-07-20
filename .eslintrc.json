@@ -32,7 +32,8 @@
     ],
     "import/prefer-default-export": "off",
     "space-before-function-paren": "off",
-    "generator-star-spacing": "off"
+    "generator-star-spacing": "off",
+    "standard/no-callback-literal": "off"
   },
   "settings": {
     "import/resolver": {
